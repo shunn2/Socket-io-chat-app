@@ -14,4 +14,6 @@ const Room = sequelize.define("room", {
   },
 });
 
+Room.belongsTo(User, { foreignKey: "opponentId" });
+
 export default Room;
