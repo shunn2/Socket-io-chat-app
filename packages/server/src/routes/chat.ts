@@ -1,12 +1,12 @@
 import { Router } from "express";
 
 import Chat from "../schemes/chat";
-import Room from "../schemes/room";
 import User from "../schemes/user";
+import Room from "../schemes/room";
 
 const router = Router();
 
-/*채팅 목록*/
+/* 채팅 목록 */
 router.get("/:roomId", async (req, res) => {
   try {
     const chat = await Chat.findAll({
@@ -15,20 +15,25 @@ router.get("/:roomId", async (req, res) => {
       },
       include: [User, Room],
     });
+
     res.json(chat);
   } catch (e) {}
 });
 
-/*채팅 전송*/
+/* 채팅 전송 */
 router.post("/:roomId", async (req, res) => {
   try {
     const chat = await Chat.create({
+      // @ts-ignore
       senderId: req.session.userId,
       content: req.body.content,
       roomId: req.params.roomId,
     });
 
-    /*TODO:: socket*/
+    const io = req.app.get("io");
+
+    io.of("/chat").to(req.params.roomId).emit("chat", chat);
+
     res.json({ message: "OK" });
   } catch (e) {}
 });
