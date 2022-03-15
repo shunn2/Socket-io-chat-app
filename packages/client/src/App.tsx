@@ -5,7 +5,7 @@ import Lobby from "./pages/Lobby";
 import RoomList from "./pages/RoomList";
 import RoomDetail from "./pages/RoomDetail";
 import Friends from "./pages/Friends";
-import Setting from "./pages/Setting";
+import Setting from "./pages/SeeMore";
 
 function App() {
   return (
