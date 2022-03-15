@@ -4,7 +4,7 @@ import { useTheme } from "@emotion/react";
 
 import { MessageType } from "./MessageList";
 
-interface ReceivedMessage extends MessageType {
+interface ReceivedMessage1 extends MessageType {
   receiver: string;
   receiverThumbnailImage?: string;
 }
@@ -47,7 +47,7 @@ const ReceivedAt = styled.span`
   opacity: 0.8;
 `;
 
-const ReceivedMessage: React.FC<ReceivedMessage> = ({ receiverThumbnailImage, receiver, timestamp, content }) => {
+const ReceivedMessage: React.FC<ReceivedMessage1> = ({ receiverThumbnailImage, receiver, timestamp, content }) => {
   const theme = useTheme();
 
   return (
